@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 import 'package:project_greenbook/utils/scanner_error_widget.dart';
+import 'package:project_greenbook/utils/product_result_card.dart';
 
 class BarcodeScannerWithScanWindow extends StatefulWidget {
   const BarcodeScannerWithScanWindow({super.key});
@@ -61,16 +62,11 @@ class _BarcodeScannerWithScanWindowState
               ),
               Align(
                 alignment: Alignment.bottomCenter,
-                child: Container(
-                  alignment: Alignment.bottomCenter,
-                  height: 100,
-                  color: Colors.black.withOpacity(0.4),
-                  child: () {
-                    if (barcode?.displayValue != null) {
-                      return Text(barcode!.displayValue.toString());
-                    }
-                  }()
-                ),
+                child: (){
+                  if (barcode?.displayValue != null) {
+                    return ProductResultCard(barcodeValue : barcode!.displayValue.toString());
+                  }
+                }()
               ),
             ],
           );
@@ -106,13 +102,5 @@ class ScannerOverlay extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return false;
-  }
-}
-
-class ProductResultCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
   }
 }
