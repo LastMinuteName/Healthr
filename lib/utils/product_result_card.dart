@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../pages/product_add.dart';
 
 class ProductResultCard extends StatelessWidget {
   const ProductResultCard({
@@ -11,27 +12,30 @@ class ProductResultCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.95,
-        height: 200,
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(barcodeValue),
-              Text(AppLocalizations.of(context)!.helloWorld),
-              ElevatedButton(
-                onPressed: (){
-
-                },
-                child: Text("FILL IN THE INFORMATION"),
-              )
-            ]
-          )
+    return SizedBox(
+        width: MediaQuery.of(context).size.width,
+      height: 200,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(barcodeValue),
+            Text(AppLocalizations.of(context)!.helloWorld),
+            ElevatedButton(
+              onPressed: (){
+                Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const ProductAddPage(),
+                      settings: RouteSettings(name: '/product_scan/product_add'),
+                    ),
+                );
+              },
+              child: Text("FILL IN THE INFORMATION"),
+            )
+          ]
         )
-      ),
+      )
     );
   }
 }
