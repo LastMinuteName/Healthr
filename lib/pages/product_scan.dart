@@ -55,7 +55,6 @@ class _BarcodeScannerWithScanWindowState extends State<BarcodeScannerWithScanWin
     );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('With Scan window')),
       backgroundColor: Colors.black,
       body: Stack(
         fit: StackFit.expand,
@@ -77,19 +76,32 @@ class _BarcodeScannerWithScanWindowState extends State<BarcodeScannerWithScanWin
           CustomPaint(
             painter: ScannerOverlay(scanWindow),
           ),
-          /*Align(
-            alignment: Alignment.bottomCenter,
-            child: () {
-              if (barcode?.displayValue != null) {
-                showModalBottomSheet(
-                  context: context,
-                  builder: (context) {
-                    return ProductResultCard(barcodeValue: barcode!.displayValue.toString());
+          Positioned(
+            top: 0,
+            left: 0,
+            child: IconButton(
+              color: Colors.white,
+              icon: ValueListenableBuilder<TorchState>(
+                valueListenable: controller.torchState,
+                builder: (context, state, child) {
+                  switch (state) {
+                    case TorchState.off:
+                      return const Icon(
+                        Icons.flashlight_off,
+                        color: Colors.grey,
+                      );
+                    case TorchState.on:
+                      return const Icon(
+                        Icons.flashlight_on,
+                        color: Colors.yellow,
+                      );
                   }
-                );
-              }
-            }()
-          ),*/
+                },
+              ),
+              iconSize: 32.0,
+              onPressed: () => controller.toggleTorch(),
+            ),
+          )
         ],
       ),
     );
