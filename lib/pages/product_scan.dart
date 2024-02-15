@@ -7,6 +7,8 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:project_greenbook/utils/scanner_error_widget.dart';
 import 'package:project_greenbook/utils/product_result_card.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class BarcodeScannerWithScanWindow extends StatefulWidget {
   const BarcodeScannerWithScanWindow({super.key});
 
@@ -108,7 +110,7 @@ class _BarcodeScannerWithScanWindowState extends State<BarcodeScannerWithScanWin
                 Align(
                   alignment: Alignment.topCenter,
                   child: Text(
-                    "Scan",
+                    AppLocalizations.of(context)!.scanHeader,
                     style: TextStyle(color: Colors.white),
                   ),
                 )

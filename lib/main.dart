@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_greenbook/pages/home_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return CupertinoApp(
       title: 'Flutter Demo',
       localizationsDelegates: const [
         AppLocalizations.delegate,
@@ -25,9 +26,8 @@ class MyApp extends StatelessWidget {
         Locale('en'), // English
         Locale('es'), // Spanish
       ],
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+      theme: const CupertinoThemeData(
+        scaffoldBackgroundColor: CupertinoColors.secondarySystemBackground,
       ),
       initialRoute: '/',
       routes: <String, WidgetBuilder> {

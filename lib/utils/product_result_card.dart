@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../pages/product_add.dart';
@@ -22,12 +23,12 @@ class ProductResultCard extends StatelessWidget {
           children: [
             Text(barcodeValue),
             Text(AppLocalizations.of(context)!.helloWorld),
-            ElevatedButton(
+            CupertinoButton(
               onPressed: (){
                 Navigator.of(context).push(
-                    MaterialPageRoute(
+                    CupertinoPageRoute(
                       builder: (context) => const ProductAddPage(),
-                      settings: RouteSettings(name: '/product_scan/product_add'),
+                      settings: RouteSettings(name: '/product_add'),
                     ),
                 );
               },

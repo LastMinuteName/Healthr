@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class _ProductAddModel with ChangeNotifier {
   final productNameController = TextEditingController();
@@ -15,11 +16,13 @@ class ProductAddPage extends StatefulWidget {
 class _ProductAddPageState extends State<ProductAddPage>{
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Choose a category"),
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: Text(AppLocalizations.of(context)!.categoryChooseTitle),
       ),
-      body: ChooseCategory(),
+      child: SafeArea(
+        child: ChooseCategory(),
+      )
     );
   }
 }
@@ -30,7 +33,10 @@ class ChooseCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text("test"),
+      child: CupertinoButton(
+        onPressed: () {  },
+        child: Text("test"),
+      ),
     );
   }
 }
