@@ -5,5 +5,11 @@
   },
   "scanHeader": "Scan",
   "homeTitle": "Home",
-  "categoryChooseTitle": "Choose a category"
+
+  "categoryChooseTitle": "Add a product",
+  "categoryChooseHeader": "Choose a category",
+  "chooseCategory_foodAndDrinks_title": "Food & Drinks",
+  "chooseCategory_foodAndDrinks_subtitle": "Consumable Products",
+  "chooseCategory_cosmetic_title": "Cosmetic",
+  "chooseCategory_cosmetic_subtitle": "Beauty and Health products"
 }

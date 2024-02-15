@@ -14,7 +14,7 @@ class ProductResultCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: MediaQuery.of(context).size.width,
+      width: MediaQuery.of(context).size.width,
       height: 200,
       child: Container(
         padding: const EdgeInsets.all(16),

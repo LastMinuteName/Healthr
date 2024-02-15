@@ -27,7 +27,8 @@ class MyApp extends StatelessWidget {
         Locale('es'), // Spanish
       ],
       theme: const CupertinoThemeData(
-        scaffoldBackgroundColor: CupertinoColors.secondarySystemBackground,
+        scaffoldBackgroundColor: CupertinoColors.secondarySystemGroupedBackground,
+        applyThemeToAll: true,
       ),
       initialRoute: '/',
       routes: <String, WidgetBuilder> {
