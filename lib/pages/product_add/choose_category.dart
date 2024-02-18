@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_greenbook/pages/product_add/product_add_model.dart';
+import 'package:project_greenbook/models/product_add_model.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:project_greenbook/utils/bordered_card.dart';
@@ -53,6 +53,12 @@ class ChooseCategory extends StatelessWidget {
                 height: 100,
                 width: 365,
                 radius: 20,
+                callback: () {
+                  pageState.category = index;
+                  pageState.nextStage();
+
+                  pageState.notifyListeners();
+                }
               )
             )
           );
