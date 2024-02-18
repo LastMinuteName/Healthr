@@ -1,35 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project_greenbook/pages/product_add/product_add_model.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:project_greenbook/utils/bordered_card.dart';
-
-class _ProductAddModel with ChangeNotifier {
-  final productNameController = TextEditingController();
-}
-
-class ProductAddPage extends StatefulWidget {
-  const ProductAddPage({super.key});
-
-  @override
-  State<ProductAddPage> createState() => _ProductAddPageState();
-}
-
-class _ProductAddPageState extends State<ProductAddPage>{
-  @override
-  Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        middle: Text(AppLocalizations.of(context)!.categoryChooseTitle),
-      ),
-      child: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: ChooseCategory(),
-        ),
-      )
-    );
-  }
-}
 
 class ChooseCategory extends StatelessWidget {
   const ChooseCategory({super.key});
@@ -37,6 +11,9 @@ class ChooseCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var localization = AppLocalizations.of(context);
+
+    var pageState = context.watch<ProductAddModel>();
+
     var category = [
       {
         "title": localization!.chooseCategory_foodAndDrinks_title,

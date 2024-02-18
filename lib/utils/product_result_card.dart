@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../pages/product_add.dart';
+import '../pages/product_add/product_add.dart';
 
 class ProductResultCard extends StatelessWidget {
   const ProductResultCard({
