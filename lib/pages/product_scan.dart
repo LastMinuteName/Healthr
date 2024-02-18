@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
-import 'package:project_greenbook/utils/scanner_error_widget.dart';
-import 'package:project_greenbook/utils/product_result_card.dart';
+import 'package:healthr/utils/scanner_error_widget.dart';
+import 'package:healthr/utils/product_result_card.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

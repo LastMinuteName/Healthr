@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_greenbook/pages/product_add/product_add_model.dart';
+import 'package:healthr/pages/product_add/product_add_model.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:project_greenbook/utils/bordered_card.dart';
+import 'package:healthr/utils/bordered_card.dart';
 
 class ChooseCategory extends StatelessWidget {
   const ChooseCategory({super.key});
