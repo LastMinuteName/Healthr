@@ -43,7 +43,7 @@ class ChooseCategory extends StatelessWidget {
           ),
         );
 
-        for (var element in category) {
+        for (var (index, element) in category.indexed) {
           widgetList.add(
             Center(
               child: BorderedCard(

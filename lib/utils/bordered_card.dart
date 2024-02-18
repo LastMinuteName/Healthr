@@ -10,6 +10,7 @@ class BorderedCard extends StatelessWidget {
     this.height,
     this.width,
     this.radius,
+    this.callback,
   });
 
   String title;
@@ -18,9 +19,12 @@ class BorderedCard extends StatelessWidget {
   double? height;
   double? width;
   double? radius;
+  VoidCallback? callback;
 
   @override
   Widget build(BuildContext context) {
+    BorderRadius borderRadius = radius != null ? BorderRadius.all(Radius.circular(radius!)) : BorderRadius.zero;
+
     return SizedBox(
       width: width,
       height: height,
@@ -31,18 +35,22 @@ class BorderedCard extends StatelessWidget {
           side: BorderSide(
             color: Theme.of(context).colorScheme.outline,
           ),
-          borderRadius: radius != null ? BorderRadius.all(Radius.circular(radius!)) : BorderRadius.zero,
+          borderRadius: borderRadius,
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CupertinoListTile(
-              title: Text(title),
-              subtitle: Text(subtitle!),
-              leading: Icon(icon!),
-            ),
-          ]
+        child: InkWell(
+          onTap: callback,
+          borderRadius: borderRadius,
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CupertinoListTile(
+                  title: Text(title),
+                  subtitle: Text(subtitle!),
+                  leading: Icon(icon!),
+                ),
+              ]
+          ),
         ),
       ),
     );
