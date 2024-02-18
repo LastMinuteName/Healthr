@@ -1,6 +1,6 @@
-# project_greenbook
+# healthr
 
-Project Greenbook app
+Healthr app
 
 ## Getting Started
 
