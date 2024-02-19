@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'choose_category.dart';
-import 'product_add_model.dart';
+import '../../models/product_add_model.dart';
 
 class ProductAddPage extends StatefulWidget {
   const ProductAddPage({super.key});
