@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:healthr/pages/product_scan.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../widgets/product_result_card.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -28,7 +30,18 @@ class HomePage extends StatelessWidget {
                 );
               },
               child: const Text("Scan a product"),
-            )
+            ),
+            CupertinoButton(
+              onPressed: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return ProductResultCard(barcodeValue: "9324441045460");
+                    }
+                );
+              },
+              child: const Text("Test add a product"),
+            ),
           ],
         ),
       ),

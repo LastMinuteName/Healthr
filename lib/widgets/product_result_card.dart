@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../pages/product_add/product_add.dart';
+import 'package:provider/provider.dart';
+import '../models/product_add_model.dart';
+import '../pages/product_add/choose_category.dart';
 
 class ProductResultCard extends StatelessWidget {
   const ProductResultCard({
@@ -27,8 +29,11 @@ class ProductResultCard extends StatelessWidget {
               onPressed: (){
                 Navigator.of(context).push(
                     CupertinoPageRoute(
-                      builder: (context) => const ProductAddPage(),
-                      settings: RouteSettings(name: '/product_add'),
+                      builder: (context) => ChangeNotifierProvider(
+                          create: (_) => ProductAddModel(barcode: barcodeValue),
+                          child: const ChooseCategory()
+                      ),
+                      settings: const RouteSettings(name: '/product_add/choose_category'),
                     ),
                 );
               },
