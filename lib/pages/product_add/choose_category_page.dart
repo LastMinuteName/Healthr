@@ -56,7 +56,10 @@ class ChooseCategoryPage extends StatelessWidget {
 
                   Navigator.of(context).push(
                     CupertinoPageRoute(
-                      builder: (context) => ProductDetailsPage(),
+                      builder: (context) => ChangeNotifierProvider.value(
+                          value: pageState,
+                          child: const ProductDetailsPage(),
+                      ),
                       settings: RouteSettings(name: '/product_details'),
                     ),
                   );
@@ -73,25 +76,29 @@ class ChooseCategoryPage extends StatelessWidget {
     }
 
     return CupertinoPageScaffold(
-        navigationBar: CupertinoNavigationBar(
-          middle: Text(AppLocalizations.of(context)!.generalInformationTitle),
-          leading: CupertinoButton(
-            padding: const EdgeInsets.all(0),
-            onPressed: () {
-              Navigator.popUntil(context, ModalRoute.withName('/'));
-            },
-            child: Text(AppLocalizations.of(context)!.cancelButtonText),
-          ),
-        ),
+        navigationBar: pageAppBar(context),
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(29.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: widgetList,
             ),
           )
         ),
+    );
+  }
+
+  CupertinoNavigationBar pageAppBar(BuildContext context) {
+    return CupertinoNavigationBar(
+      middle: Text(AppLocalizations.of(context)!.generalInformationTitle),
+      leading: CupertinoButton(
+        padding: const EdgeInsets.all(0),
+        onPressed: () {
+          Navigator.popUntil(context, ModalRoute.withName('/'));
+        },
+        child: Text(AppLocalizations.of(context)!.cancelButtonText),
+      ),
     );
   }
 }
