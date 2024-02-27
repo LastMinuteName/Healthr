@@ -6,10 +6,20 @@
   "scanHeader": "Scan",
   "homeTitle": "Home",
 
-  "categoryChooseTitle": "Add a product",
+  "nextButtonText": "Next",
+  "backButtonText": "Back",
+  "cancelButtonText": "Cancel",
+
+  "generalInformationTitle": "General Information",
   "categoryChooseHeader": "Choose a category",
   "chooseCategory_foodAndDrinks_title": "Food & Drinks",
   "chooseCategory_foodAndDrinks_subtitle": "Consumable Products",
   "chooseCategory_cosmetic_title": "Cosmetic",
-  "chooseCategory_cosmetic_subtitle": "Beauty and Health products"
+  "chooseCategory_cosmetic_subtitle": "Beauty and Health products",
+
+  "productDetailsHeader": "Add Product Details",
+
+  "brandNamePlaceholder": "Brand name",
+  "productNamePlaceholder": "Product name",
+  "organicText": "Organic"
 }

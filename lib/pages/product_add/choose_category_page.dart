@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:healthr/models/product_add_model.dart';
+import 'package:healthr/pages/product_add/product_details_page.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:healthr/widgets/bordered_card.dart';
 
-class ChooseCategory extends StatelessWidget {
-  const ChooseCategory({super.key});
+class ChooseCategoryPage extends StatelessWidget {
+  const ChooseCategoryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +51,16 @@ class ChooseCategory extends StatelessWidget {
                 height: 100,
                 width: 365,
                 radius: 20,
+                onTap: () {
+                  pageState.categorySelected = index;
+
+                  Navigator.of(context).push(
+                    CupertinoPageRoute(
+                      builder: (context) => ProductDetailsPage(),
+                      settings: RouteSettings(name: '/product_details'),
+                    ),
+                  );
+                }
               )
           )
       );
@@ -63,7 +74,14 @@ class ChooseCategory extends StatelessWidget {
 
     return CupertinoPageScaffold(
         navigationBar: CupertinoNavigationBar(
-          middle: Text(AppLocalizations.of(context)!.categoryChooseTitle),
+          middle: Text(AppLocalizations.of(context)!.generalInformationTitle),
+          leading: CupertinoButton(
+            padding: const EdgeInsets.all(0),
+            onPressed: () {
+              Navigator.popUntil(context, ModalRoute.withName('/'));
+            },
+            child: Text(AppLocalizations.of(context)!.cancelButtonText),
+          ),
         ),
         child: SafeArea(
           child: Padding(

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import '../models/product_add_model.dart';
-import '../pages/product_add/choose_category.dart';
+import '../pages/product_add/choose_category_page.dart';
 
 class ProductResultCard extends StatelessWidget {
   const ProductResultCard({
@@ -31,7 +31,7 @@ class ProductResultCard extends StatelessWidget {
                     CupertinoPageRoute(
                       builder: (context) => ChangeNotifierProvider(
                           create: (_) => ProductAddModel(barcode: barcodeValue),
-                          child: const ChooseCategory()
+                          child: const ChooseCategoryPage()
                       ),
                       settings: const RouteSettings(name: '/product_add/choose_category'),
                     ),

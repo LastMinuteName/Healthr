@@ -10,7 +10,7 @@ class BorderedCard extends StatelessWidget {
     this.height,
     this.width,
     this.radius,
-    this.callback,
+    this.onTap,
   });
 
   String title;
@@ -19,7 +19,7 @@ class BorderedCard extends StatelessWidget {
   double? height;
   double? width;
   double? radius;
-  VoidCallback? callback;
+  VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class BorderedCard extends StatelessWidget {
           borderRadius: borderRadius,
         ),
         child: InkWell(
-          onTap: callback,
+          onTap: onTap,
           borderRadius: borderRadius,
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
