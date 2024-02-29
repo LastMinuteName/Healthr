@@ -11,6 +11,7 @@ class ProductDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
+      resizeToAvoidBottomInset: false,
       navigationBar: pageAppBar(context),
       child: body(context),
     );
@@ -56,7 +57,7 @@ class ProductDetailsPage extends StatelessWidget {
                 ),
                 BorderedCard(
                   onTap: () {},
-                  radius: 4,
+                  radius: 5,
                   height: 50,
                   width: 322,
                   title: AppLocalizations.of(context)!.brandNamePlaceholder,
@@ -76,12 +77,6 @@ class ProductDetailsPage extends StatelessWidget {
                   width: 322,
                   height: 50,
                   child: CupertinoTextField(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
-                      border: Border.all(
-                        color: Theme.of(context).colorScheme.outline,
-                      )
-                    ),
                     padding: EdgeInsets.fromLTRB(20, 8, 8, 8),
                     controller: pageState.productNameController,
                     placeholder: AppLocalizations.of(context)!.productNamePlaceholder,
@@ -98,14 +93,14 @@ class ProductDetailsPage extends StatelessWidget {
                     width: 7,
                   ),
                   BorderedCard(
-                    radius: 4,
+                    radius: 5,
                     height: 50,
                     width: 322,
                     title: AppLocalizations.of(context)!.organicText,
                     trailing: CupertinoSwitch(
                       value: pageState.organicValue,
                       onChanged: (bool value) {
-                        pageState.organicValue = !value;
+                        pageState.updateOrganicValue(value);
                       },
                     ),
                   ),

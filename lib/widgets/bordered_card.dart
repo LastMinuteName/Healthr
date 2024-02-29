@@ -36,7 +36,7 @@ class BorderedCard extends StatelessWidget {
         margin: EdgeInsets.all(0),
         shape: RoundedRectangleBorder(
           side: BorderSide(
-            color: Theme.of(context).colorScheme.outline,
+            color: Theme.of(context).colorScheme.outlineVariant,
           ),
           borderRadius: borderRadius,
         ),

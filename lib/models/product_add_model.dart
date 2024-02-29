@@ -22,5 +22,8 @@ class ProductAddModel with ChangeNotifier {
   var productNameController = TextEditingController();
   bool organicValue = false;
 
-
+  void updateOrganicValue(bool value) {
+    organicValue = value;
+    notifyListeners();
+  }
 }
