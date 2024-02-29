@@ -11,6 +11,7 @@ class BorderedCard extends StatelessWidget {
     this.width,
     this.radius,
     this.onTap,
+    this.trailing,
   });
 
   String title;
@@ -19,6 +20,7 @@ class BorderedCard extends StatelessWidget {
   double? height;
   double? width;
   double? radius;
+  Widget? trailing;
   VoidCallback? onTap;
 
   @override
@@ -31,6 +33,7 @@ class BorderedCard extends StatelessWidget {
       child: Card(
         elevation: 0,
         color: Colors.transparent,
+        margin: EdgeInsets.all(0),
         shape: RoundedRectangleBorder(
           side: BorderSide(
             color: Theme.of(context).colorScheme.outline,
@@ -41,15 +44,15 @@ class BorderedCard extends StatelessWidget {
           onTap: onTap,
           borderRadius: borderRadius,
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CupertinoListTile(
-                  title: Text(title),
-                  subtitle: Text(subtitle!),
-                  leading: Icon(icon!),
-                ),
-              ]
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CupertinoListTile(
+                title: Text(title),
+                subtitle: subtitle != null ? Text(subtitle!) : null,
+                leading: icon != null ? Icon(icon!) : null,
+                trailing: trailing,
+              ),
+            ]
           ),
         ),
       ),

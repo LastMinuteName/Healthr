@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:healthr/widgets/bordered_card.dart';
 import 'package:provider/provider.dart';
 import '../../models/product_add_model.dart';
 
@@ -48,24 +49,39 @@ class ProductDetailsPage extends StatelessWidget {
             SizedBox(
               height: 15,
             ),
-            Card(
-              margin: EdgeInsets.fromLTRB(7, 0, 0, 0),
-              child: SizedBox(
-                width: 322,
-                height: 50,
-                child: Text(AppLocalizations.of(context)!.brandNamePlaceholder),
-              ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 7,
+                ),
+                BorderedCard(
+                  onTap: () {},
+                  radius: 4,
+                  height: 50,
+                  width: 322,
+                  title: AppLocalizations.of(context)!.brandNamePlaceholder,
+                  trailing: Icon(Icons.arrow_forward_ios_outlined),
+                ),
+              ]
             ),
             SizedBox(
               height: 14,
             ),
-            SizedBox(
-              width: 322,
-              height: 50,
-              child: CupertinoTextField(
-                controller: pageState.productNameController,
-                placeholder: AppLocalizations.of(context)!.productNamePlaceholder,
-              ),
+            Row(
+                children: [
+                  SizedBox(
+                    width: 7,
+                  ),
+                  SizedBox(
+                    width: 322,
+                    height: 50,
+                    child: CupertinoTextField(
+                      padding: EdgeInsets.fromLTRB(20, 8, 8, 8),
+                      controller: pageState.productNameController,
+                      placeholder: AppLocalizations.of(context)!.productNamePlaceholder,
+                    ),
+                  ),
+                ]
             ),
             SizedBox(
               height: 14,
@@ -81,13 +97,20 @@ class ProductDetailsPage extends StatelessWidget {
             SizedBox(
               height: 308,
             ),
-            SizedBox(
-              width: 322,
-              height: 51,
-              child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text(AppLocalizations.of(context)!.nextButtonText)
-              ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 7,
+                ),
+                SizedBox(
+                  width: 322,
+                  height: 51,
+                  child: ElevatedButton(
+                    onPressed: true ? null : () {},
+                    child: Text(AppLocalizations.of(context)!.nextButtonText)
+                  ),
+                ),
+              ],
             ),
           ]
         ),
