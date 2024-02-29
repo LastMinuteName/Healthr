@@ -17,9 +17,10 @@ class ProductAddModel with ChangeNotifier {
 
   int categorySelected = 0;
   String? brandSelected;
-  
 
   var brandNameController = TextEditingController();
   var productNameController = TextEditingController();
   bool organicValue = false;
+
+
 }

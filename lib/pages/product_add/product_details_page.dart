@@ -68,31 +68,48 @@ class ProductDetailsPage extends StatelessWidget {
               height: 14,
             ),
             Row(
-                children: [
-                  SizedBox(
-                    width: 7,
-                  ),
-                  SizedBox(
-                    width: 322,
-                    height: 50,
-                    child: CupertinoTextField(
-                      padding: EdgeInsets.fromLTRB(20, 8, 8, 8),
-                      controller: pageState.productNameController,
-                      placeholder: AppLocalizations.of(context)!.productNamePlaceholder,
+              children: [
+                SizedBox(
+                  width: 7,
+                ),
+                SizedBox(
+                  width: 322,
+                  height: 50,
+                  child: CupertinoTextField(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                      border: Border.all(
+                        color: Theme.of(context).colorScheme.outline,
+                      )
                     ),
+                    padding: EdgeInsets.fromLTRB(20, 8, 8, 8),
+                    controller: pageState.productNameController,
+                    placeholder: AppLocalizations.of(context)!.productNamePlaceholder,
                   ),
-                ]
+                ),
+              ]
             ),
             SizedBox(
               height: 14,
             ),
-            Card(
-              margin: EdgeInsets.fromLTRB(7, 0, 0, 0),
-              child: SizedBox(
-                width: 322,
-                height: 50,
-                child: Text(AppLocalizations.of(context)!.organicText),
-              ),
+            Row(
+                children: [
+                  SizedBox(
+                    width: 7,
+                  ),
+                  BorderedCard(
+                    radius: 4,
+                    height: 50,
+                    width: 322,
+                    title: AppLocalizations.of(context)!.organicText,
+                    trailing: CupertinoSwitch(
+                      value: pageState.organicValue,
+                      onChanged: (bool value) {
+                        pageState.organicValue = !value;
+                      },
+                    ),
+                  ),
+                ]
             ),
             SizedBox(
               height: 308,
