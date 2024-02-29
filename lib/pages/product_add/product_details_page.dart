@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:healthr/pages/product_add/brand_search.dart';
 import 'package:healthr/widgets/bordered_card.dart';
 import 'package:provider/provider.dart';
 import '../../models/product_add_model.dart';
@@ -56,7 +57,17 @@ class ProductDetailsPage extends StatelessWidget {
                   width: 7,
                 ),
                 BorderedCard(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      CupertinoPageRoute(
+                        builder: (context) => ChangeNotifierProvider.value(
+                          value: pageState,
+                          child: BrandSearchPage(),
+                        ),
+                        settings: RouteSettings(name: '/brand_search'),
+                      ),
+                    );
+                  },
                   radius: 5,
                   height: 50,
                   width: 322,
