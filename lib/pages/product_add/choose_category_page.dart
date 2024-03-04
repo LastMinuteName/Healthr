@@ -43,29 +43,29 @@ class ChooseCategoryPage extends StatelessWidget {
 
     for (var (index, element) in category.indexed) {
       widgetList.add(
-          Center(
-              child: BorderedCard(
-                title: element["title"]!,
-                subtitle: element["subtitle"],
-                icon: Icons.favorite,
-                height: 100,
-                width: 365,
-                radius: 20,
-                onTap: () {
-                  pageState.categorySelected = index;
+        Center(
+          child: BorderedCard(
+            title: element["title"]!,
+            subtitle: element["subtitle"],
+            icon: Icons.favorite,
+            height: 100,
+            width: 365,
+            radius: 20,
+            onTap: () {
+              pageState.categorySelected = index;
 
-                  Navigator.of(context).push(
-                    CupertinoPageRoute(
-                      builder: (context) => ChangeNotifierProvider.value(
-                          value: pageState,
-                          child: const ProductDetailsPage(),
-                      ),
-                      settings: RouteSettings(name: '/product_details'),
-                    ),
-                  );
-                }
-              )
+              Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (context) => ChangeNotifierProvider.value(
+                      value: pageState,
+                      child: const ProductDetailsPage(),
+                  ),
+                  settings: RouteSettings(name: '/product_details'),
+                ),
+              );
+            }
           )
+        )
       );
 
       widgetList.add(
