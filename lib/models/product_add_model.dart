@@ -26,4 +26,9 @@ class ProductAddModel with ChangeNotifier {
     organicValue = value;
     notifyListeners();
   }
+
+  void updateBrandSelected(String value) {
+    brandSelected = value;
+    notifyListeners();
+  }
 }

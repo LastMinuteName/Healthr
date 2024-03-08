@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+
+import '../../models/product_add_model.dart';
 
 class BrandSearchPage extends StatefulWidget {
 
@@ -72,6 +75,8 @@ class _BrandSearchPageState extends State<BrandSearchPage>{
   }
 
   Widget body(BuildContext context) {
+    var pageState = context.watch<ProductAddModel>();
+
     return SingleChildScrollView(
       physics: ClampingScrollPhysics(),
       controller: _scrollController,
@@ -84,7 +89,8 @@ class _BrandSearchPageState extends State<BrandSearchPage>{
             var listTile = CupertinoListTile(
               title: Text(searchResult[i]),
               onTap: () {
-
+                pageState.updateBrandSelected(searchResult[i]);
+                Navigator.popUntil(context, ModalRoute.withName('/product_details'));
               },
             );
 

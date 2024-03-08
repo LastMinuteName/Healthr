@@ -71,7 +71,7 @@ class ProductDetailsPage extends StatelessWidget {
                   radius: 5,
                   height: 50,
                   width: 322,
-                  title: AppLocalizations.of(context)!.brandNamePlaceholder,
+                  title: pageState.brandSelected == null ? AppLocalizations.of(context)!.brandNamePlaceholder : pageState.brandSelected!,
                   trailing: Icon(Icons.arrow_forward_ios_outlined),
                 ),
               ]
