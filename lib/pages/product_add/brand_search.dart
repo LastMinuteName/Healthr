@@ -91,7 +91,7 @@ class _BrandSearchPageState extends State<BrandSearchPage>{
       physics: ClampingScrollPhysics(),
       controller: _scrollController,
       child: CupertinoListSection(
-        header: Text("Test"),
+        header: SizedBox(),
         children: () {
           List<Widget> listTiles = [];
 
