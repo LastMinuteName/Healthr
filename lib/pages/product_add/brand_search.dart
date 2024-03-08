@@ -18,34 +18,19 @@ class _BrandSearchPageState extends State<BrandSearchPage>{
   void initState() {
     searchResult = brandsList;
 
-    /*Simulate lazy loading to prevent initial large render of listTiles, create additional listTiles
-    as you go*/
-    _scrollController.addListener(() {
-      if (_scrollController.position.atEdge) {
-        bool isTop = _scrollController.position.pixels == 0;
-        if (!isTop) {
-          if (searchResult.length >= listIndex + 20) {
-            setState(() {
-              listIndex = listIndex + 20;
-            });
-          }
-          else {
-            setState(() {
-              listIndex = listIndex + (searchResult.length - listIndex);
-            });
-          }
-        }
-      }
-    });
+    mountListeners();
   }
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      resizeToAvoidBottomInset: false,
-      navigationBar: pageAppBar(context),
-      child: SafeArea(
-        child: body(context),
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: CupertinoPageScaffold(
+        resizeToAvoidBottomInset: false,
+        navigationBar: pageAppBar(context),
+        child: SafeArea(
+          child: body(context),
+        ),
       ),
     );
   }
@@ -110,6 +95,28 @@ class _BrandSearchPageState extends State<BrandSearchPage>{
         }()
       ),
     );
+  }
+
+  void mountListeners() {
+    /*Simulate lazy loading to prevent initial large render of listTiles, create additional listTiles
+    as you go*/
+    _scrollController.addListener(() {
+      if (_scrollController.position.atEdge) {
+        bool isTop = _scrollController.position.pixels == 0;
+        if (!isTop) {
+          if (searchResult.length >= listIndex + 20) {
+            setState(() {
+              listIndex = listIndex + 20;
+            });
+          }
+          else {
+            setState(() {
+              listIndex = listIndex + (searchResult.length - listIndex);
+            });
+          }
+        }
+      }
+    });
   }
 }
 
