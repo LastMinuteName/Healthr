@@ -64,6 +64,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     width: 7,
                   ),
                   BorderedCard(
+                    borderColor: pageState.brandSelected != null ? Colors.green : null,
                     onTap: () {
                       Navigator.of(context).push(
                         CupertinoPageRoute(
