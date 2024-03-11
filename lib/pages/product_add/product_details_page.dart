@@ -48,7 +48,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
 
     /* Initialize the productnamecontroller here instead of initstate because i want access to context*/
     if (_productNameController == null) {
+      validateForm(pageState.brandSelected, pageState.productName);
       _productNameController = TextEditingController();
+      _productNameController!.text = pageState.productName;
       mountListeners(pageState);
     }
 
@@ -74,7 +76,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     width: 7,
                   ),
                   BorderedCard(
-                    borderColor: pageState.brandSelected != null ? Colors.green : null,
+                    borderColor: _brandValidated == true ? Colors.green : null,
                     onTap: () {
                       Navigator.of(context).push(
                         CupertinoPageRoute(
