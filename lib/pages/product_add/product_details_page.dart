@@ -6,8 +6,15 @@ import 'package:healthr/widgets/bordered_card.dart';
 import 'package:provider/provider.dart';
 import '../../models/product_add_model.dart';
 
-class ProductDetailsPage extends StatelessWidget {
+class ProductDetailsPage extends StatefulWidget {
   const ProductDetailsPage({super.key});
+
+  @override
+  State<StatefulWidget> createState() => _ProductDetailsPageState();
+}
+
+class _ProductDetailsPageState extends State<ProductDetailsPage> {
+  bool _pageValidated = false;
 
   @override
   Widget build(BuildContext context) {
@@ -36,108 +43,108 @@ class ProductDetailsPage extends StatelessWidget {
     var pageState = context.watch<ProductAddModel>();
 
     return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.all(29.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(AppLocalizations.of(context)!.productDetailsHeader),
-            SizedBox(
-              height: 7,
-            ),
-            LinearProgressIndicator(
-              value: 0.01,
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Row(
+        child: Padding(
+          padding: EdgeInsets.all(29.0),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(AppLocalizations.of(context)!.productDetailsHeader),
                 SizedBox(
-                  width: 7,
+                  height: 7,
                 ),
-                BorderedCard(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      CupertinoPageRoute(
-                        builder: (context) => ChangeNotifierProvider.value(
-                          value: pageState,
-                          child: BrandSearchPage(),
-                        ),
-                        settings: RouteSettings(name: '/brand_search'),
+                LinearProgressIndicator(
+                  value: 0.01,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                    children: [
+                      SizedBox(
+                        width: 7,
                       ),
-                    );
-                  },
-                  radius: 5,
-                  height: 50,
-                  width: 322,
-                  title: pageState.brandSelected == null ? AppLocalizations.of(context)!.brandNamePlaceholder : pageState.brandSelected!,
-                  trailing: Icon(Icons.arrow_forward_ios_outlined),
+                      BorderedCard(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            CupertinoPageRoute(
+                              builder: (context) => ChangeNotifierProvider.value(
+                                value: pageState,
+                                child: BrandSearchPage(),
+                              ),
+                              settings: RouteSettings(name: '/brand_search'),
+                            ),
+                          );
+                        },
+                        radius: 5,
+                        height: 50,
+                        width: 322,
+                        title: pageState.brandSelected == null ? AppLocalizations.of(context)!.brandNamePlaceholder : pageState.brandSelected!,
+                        trailing: Icon(Icons.arrow_forward_ios_outlined),
+                      ),
+                    ]
                 ),
-              ]
-            ),
-            SizedBox(
-              height: 14,
-            ),
-            Row(
-              children: [
                 SizedBox(
-                  width: 7,
+                  height: 14,
+                ),
+                Row(
+                    children: [
+                      SizedBox(
+                        width: 7,
+                      ),
+                      SizedBox(
+                        width: 322,
+                        height: 50,
+                        child: CupertinoTextField(
+                          padding: EdgeInsets.fromLTRB(20, 8, 8, 8),
+                          controller: pageState.productNameController,
+                          placeholder: AppLocalizations.of(context)!.productNamePlaceholder,
+                        ),
+                      ),
+                    ]
                 ),
                 SizedBox(
-                  width: 322,
-                  height: 50,
-                  child: CupertinoTextField(
-                    padding: EdgeInsets.fromLTRB(20, 8, 8, 8),
-                    controller: pageState.productNameController,
-                    placeholder: AppLocalizations.of(context)!.productNamePlaceholder,
-                  ),
+                  height: 14,
                 ),
-              ]
-            ),
-            SizedBox(
-              height: 14,
-            ),
-            Row(
-                children: [
-                  SizedBox(
-                    width: 7,
-                  ),
-                  BorderedCard(
-                    radius: 5,
-                    height: 50,
-                    width: 322,
-                    title: AppLocalizations.of(context)!.organicText,
-                    trailing: CupertinoSwitch(
-                      value: pageState.organicValue,
-                      onChanged: (bool value) {
-                        pageState.updateOrganicValue(value);
-                      },
+                Row(
+                    children: [
+                      SizedBox(
+                        width: 7,
+                      ),
+                      BorderedCard(
+                        radius: 5,
+                        height: 50,
+                        width: 322,
+                        title: AppLocalizations.of(context)!.organicText,
+                        trailing: CupertinoSwitch(
+                          value: pageState.organicValue,
+                          onChanged: (bool value) {
+                            pageState.updateOrganicValue(value);
+                          },
+                        ),
+                      ),
+                    ]
+                ),
+                SizedBox(
+                  height: 308,
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 7,
                     ),
-                  ),
-                ]
-            ),
-            SizedBox(
-              height: 308,
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  width: 7,
+                    SizedBox(
+                      width: 322,
+                      height: 51,
+                      child: ElevatedButton(
+                          onPressed: true ? null : () {},
+                          child: Text(AppLocalizations.of(context)!.nextButtonText)
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  width: 322,
-                  height: 51,
-                  child: ElevatedButton(
-                    onPressed: true ? null : () {},
-                    child: Text(AppLocalizations.of(context)!.nextButtonText)
-                  ),
-                ),
-              ],
-            ),
-          ]
-        ),
-      )
+              ]
+          ),
+        )
     );
   }
 }

@@ -18,6 +18,7 @@ class _BrandSearchPageState extends State<BrandSearchPage>{
 
   int listIndex = 40;
 
+  @override
   void initState() {
     searchResult = brandsList;
 
