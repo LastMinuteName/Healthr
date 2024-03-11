@@ -12,6 +12,7 @@ class BorderedCard extends StatelessWidget {
     this.radius,
     this.onTap,
     this.trailing,
+    this.borderColor,
   });
 
   String title;
@@ -22,10 +23,13 @@ class BorderedCard extends StatelessWidget {
   double? radius;
   Widget? trailing;
   VoidCallback? onTap;
+  Color? borderColor;
 
   @override
   Widget build(BuildContext context) {
     BorderRadius borderRadius = radius != null ? BorderRadius.all(Radius.circular(radius!)) : BorderRadius.zero;
+
+    borderColor ??= Theme.of(context).colorScheme.outlineVariant;
 
     return SizedBox(
       width: width,
@@ -33,10 +37,10 @@ class BorderedCard extends StatelessWidget {
       child: Card(
         elevation: 0,
         color: Colors.transparent,
-        margin: EdgeInsets.all(0),
+        margin: const EdgeInsets.all(0),
         shape: RoundedRectangleBorder(
           side: BorderSide(
-            color: Theme.of(context).colorScheme.outlineVariant,
+            color: borderColor!,
           ),
           borderRadius: borderRadius,
         ),
