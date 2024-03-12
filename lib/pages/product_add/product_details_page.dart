@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:healthr/pages/product_add/brand_search.dart';
+import 'package:healthr/pages/product_add/brand_search_page.dart';
 import 'package:healthr/widgets/bordered_card.dart';
 import 'package:provider/provider.dart';
 import '../../models/product_add_model.dart';
