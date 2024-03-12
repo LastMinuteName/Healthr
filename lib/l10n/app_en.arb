@@ -23,5 +23,9 @@
   "productNamePlaceholder": "Product name",
   "organicText": "Organic",
 
-  "searchFieldText": "Search"
+  "searchFieldText": "Search",
+
+  "TakePhotoDialogueTitle" : "Front of product",
+  "TakePhotoDialogueMainText" : "Take a photo of the front of the product and product",
+  "TakePhotoDialogueButton" : "Take the photo"
 }
