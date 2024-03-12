@@ -7,8 +7,30 @@ class TakeProductPhotoPage extends StatefulWidget {
 
 class _TakeProductPhotoPageState extends State<TakeProductPhotoPage> {
   @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _showAlertDialog(context);
+    });
+  }
+
+  void _showAlertDialog(BuildContext context) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        title: const Text('Lorem Ipsum'),
+        content: const Text('Proceed with destructive action?'),
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return CupertinoPageScaffold(
+      resizeToAvoidBottomInset: false,
+      navigationBar: CupertinoNavigationBar(),
+      child: SafeArea(
+        child: Placeholder(),
+      ),
+    );
   }
 }
