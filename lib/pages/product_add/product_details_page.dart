@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:healthr/pages/product_add/brand_search_page.dart';
+import 'package:healthr/pages/product_add/take_product_photo_page.dart';
 import 'package:healthr/widgets/bordered_card.dart';
 import 'package:provider/provider.dart';
 import '../../models/product_add_model.dart';
@@ -45,14 +46,14 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
 
   Widget body(BuildContext context) {
     ProductAddModel pageState = context.watch<ProductAddModel>();
-
     /* Initialize the productnamecontroller here instead of initstate because i want access to context*/
     if (_productNameController == null) {
-      validateForm(pageState.brandSelected, pageState.productName);
       _productNameController = TextEditingController();
       _productNameController!.text = pageState.productName;
       mountListeners(pageState);
     }
+
+    validateForm(pageState.brandSelected, pageState.productName);
 
     return SafeArea(
       child: Padding(
@@ -155,7 +156,17 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   width: 322,
                   height: 51,
                   child: ElevatedButton(
-                      onPressed: _pageValidated ? () {} : null,
+                      onPressed: _pageValidated ? () {
+                        Navigator.of(context).push(
+                          CupertinoPageRoute(
+                            builder: (context) => ChangeNotifierProvider.value(
+                              value: pageState,
+                              child: TakeProductPhotoPage(),
+                            ),
+                            settings: RouteSettings(name: '/take_product_photo'),
+                          ),
+                        );
+                      } : null,
                       child: Text(AppLocalizations.of(context)!.nextButtonText)
                   ),
                 ),
