@@ -25,7 +25,7 @@
 
   "searchFieldText": "Search",
 
-  "TakePhotoDialogueTitle" : "Front of product",
-  "TakePhotoDialogueMainText" : "Take a photo of the front of the product and product",
-  "TakePhotoDialogueButton" : "Take the photo"
+  "takePhotoDialogueTitle" : "Front of product",
+  "takePhotoDialogueMainText" : "Take a photo of the front of the product and product",
+  "takePhotoDialogueButton" : "Take the photo"
 }

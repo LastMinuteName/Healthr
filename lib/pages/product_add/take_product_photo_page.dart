@@ -78,9 +78,21 @@ class _TakeProductPhotoPageState extends State<TakeProductPhotoPage> {
 
   Widget cameraView() {
     if (controller != null) {
-      if (controller!.value.isInitialized) return CameraPreview(controller!);
+      if (controller!.value.isInitialized) {
+        final scale = 1 / (controller!.value.aspectRatio * MediaQuery.of(context).size.aspectRatio);
+        return Transform.scale(
+          scale: scale,
+          alignment: Alignment.topCenter,
+          child: CameraPreview(controller!),
+        );
+        //return CameraPreview(controller!);
+      }
     }
 
-    return Placeholder();
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.black,
+      ),
+    );
   }
 }

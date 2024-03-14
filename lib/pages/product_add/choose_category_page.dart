@@ -18,11 +18,11 @@ class ChooseCategoryPage extends StatelessWidget {
     var category = [
       {
         "title": localization!.chooseCategory_foodAndDrinks_title,
-        "subtitle": localization!.chooseCategory_foodAndDrinks_subtitle
+        "subtitle": localization.chooseCategory_foodAndDrinks_subtitle
       },
       {
-        "title": localization!.chooseCategory_cosmetic_title,
-        "subtitle": localization!.chooseCategory_cosmetic_subtitle
+        "title": localization.chooseCategory_cosmetic_title,
+        "subtitle": localization.chooseCategory_cosmetic_subtitle
       }
     ];
 
