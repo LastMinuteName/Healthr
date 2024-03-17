@@ -27,5 +27,6 @@
 
   "takePhotoDialogueTitle" : "Front of product",
   "takePhotoDialogueMainText" : "Take a photo of the front of the product and product",
-  "takePhotoDialogueButton" : "Take the photo"
+  "takePhotoDialogueButton" : "Take the photo",
+  "takePhotoOverlayTitle" : "Photo",
 }
