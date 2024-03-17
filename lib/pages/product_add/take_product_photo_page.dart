@@ -46,6 +46,7 @@ class _TakeProductPhotoPageState extends State<TakeProductPhotoPage> {
         if (!mounted) {
           return;
         }
+        controller!.setFlashMode(FlashMode.off);
         setState(() {});
       }).catchError((Object e) {
         if (e is CameraException) {
@@ -90,17 +91,12 @@ class _TakeProductPhotoPageState extends State<TakeProductPhotoPage> {
           Positioned(
             top: 0,
             left: 0,
-            child: IconButton(
-              color: Colors.white,
-              icon: Icon(Icons.flashlight_off),
-              iconSize: 32.0,
-              onPressed: () {  },
-            ),
+            child: torchButton(),
           ),
           Align(
             alignment: Alignment.topCenter,
             child: Text(
-              AppLocalizations.of(context)!.scanHeader,
+              AppLocalizations.of(context)!.takePhotoOverlayTitle,
               style: TextStyle(color: Colors.white),
             ),
           ),
@@ -111,19 +107,17 @@ class _TakeProductPhotoPageState extends State<TakeProductPhotoPage> {
             children: [
               CameraCaptureIconButton(
                 size: MediaQuery.of(context).size.width * 0.2,
-                callback: () async {
-                  XFile? picture = await controller?.takePicture();
-
-                  print(picture!.path);
+                callback: () {
+                  controller?.takePicture().then((value) => {
+                    showCupertinoModalPopup<void>(
+                      context: context,
+                      builder: (BuildContext context) => CupertinoAlertDialog(
+                        content: Image.file(File(value.path)),
+                      ),
+                    )
+                  });
 
                   //Directory directory = await getApplicationDocumentsDirectory();
-
-                  showCupertinoModalPopup<void>(
-                    context: context,
-                    builder: (BuildContext context) => CupertinoAlertDialog(
-                      content: Image.file(File(picture!.path)),
-                    ),
-                  );
                 }
               ),
               const SizedBox(height: 16),
@@ -132,6 +126,50 @@ class _TakeProductPhotoPageState extends State<TakeProductPhotoPage> {
         ],
       ),
     );
+  }
+
+  Widget torchButton() {
+    if (controller != null) {
+      return IconButton(
+        color: Colors.white,
+        icon: ValueListenableBuilder<FlashMode>(
+          valueListenable: ValueNotifier<FlashMode>(controller!.value.flashMode),
+          builder: (context, state, child) {
+            switch (state) {
+              case FlashMode.auto:
+              case FlashMode.off:
+                return const Icon(
+                  Icons.flashlight_off,
+                  color: Colors.white,
+                );
+              case FlashMode.torch:
+                return const Icon(
+                  Icons.flashlight_on,
+                  color: Colors.yellow,
+                );
+              default:
+                return const Icon(Icons.add);
+            }
+          },
+        ),
+        iconSize: 32.0,
+        onPressed: () {
+          toggleFlash();
+        },
+      );
+    }
+
+    return const SizedBox();
+  }
+
+  void toggleFlash() async {
+    if(controller!.value.flashMode == FlashMode.off) {
+      await controller?.setFlashMode(FlashMode.torch);
+    }
+    else {
+      await controller?.setFlashMode(FlashMode.off);
+    }
+    setState(() {});
   }
 
   Widget cameraView() {
@@ -145,7 +183,6 @@ class _TakeProductPhotoPageState extends State<TakeProductPhotoPage> {
           alignment: Alignment.topCenter,
           child: CameraPreview(controller!),
         );
-        //return CameraPreview(controller!);
       }
     }
 
