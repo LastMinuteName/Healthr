@@ -1,13 +1,18 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:healthr/pages/product_add/choose_category_page.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 import 'package:healthr/widgets/scanner_error_widget.dart';
 import 'package:healthr/widgets/product_result_card.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+
+import '../models/product_add_model.dart';
 
 class BarcodeScannerWithScanWindow extends StatefulWidget {
   const BarcodeScannerWithScanWindow({super.key});
@@ -23,6 +28,7 @@ class _BarcodeScannerWithScanWindowState extends State<BarcodeScannerWithScanWin
   BarcodeCapture? capture;
   bool productScanned = false;
 
+  /*TODO: Pause or dispose of the controller when the page is no longer in focus but still remains in the context/widget stack from navigating. When page resumes start or reinitialize the controller.*/
   Future<void> onDetect(BarcodeCapture barcode) async {
     capture = barcode;
     this.barcode = barcode.barcodes.first;
@@ -32,7 +38,21 @@ class _BarcodeScannerWithScanWindowState extends State<BarcodeScannerWithScanWin
       showModalBottomSheet(
         context: context,
         builder: (context) {
-          return ProductResultCard(barcodeValue: this.barcode!.displayValue.toString());
+          return ProductResultCard(barcodeValue: this.barcode!.displayValue.toString(), buttonAction: () {
+            controller.stop();
+
+            Navigator.of(context).push(
+              CupertinoPageRoute(
+                builder: (context) => ChangeNotifierProvider(
+                  create: (_) => ProductAddModel(barcode: this.barcode!.displayValue.toString()),
+                  child: const ChooseCategoryPage()
+                ),
+                settings: const RouteSettings(name: '/product_add/choose_category'),
+              ),
+            ).then((_) {
+              controller.start();
+            });
+          },);
         }
       ).whenComplete(() {
         productScanned = false;
