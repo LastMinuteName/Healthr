@@ -9,9 +9,11 @@ class ProductResultCard extends StatelessWidget {
   const ProductResultCard({
     super.key,
     required this.barcodeValue,
+    this.buttonAction,
   });
 
   final String barcodeValue;
+  final VoidCallback? buttonAction;
 
   @override
   Widget build(BuildContext context) {
@@ -26,17 +28,7 @@ class ProductResultCard extends StatelessWidget {
             Text(barcodeValue),
             Text(AppLocalizations.of(context)!.helloWorld),
             CupertinoButton(
-              onPressed: (){
-                Navigator.of(context).push(
-                    CupertinoPageRoute(
-                      builder: (context) => ChangeNotifierProvider(
-                          create: (_) => ProductAddModel(barcode: barcodeValue),
-                          child: const ChooseCategoryPage()
-                      ),
-                      settings: const RouteSettings(name: '/product_add/choose_category'),
-                    ),
-                );
-              },
+              onPressed: buttonAction,
               child: Text("FILL IN THE INFORMATION"),
             )
           ]
